@@ -1,1 +1,0 @@
-geth --identity "PickNodeName" --rpc --rpcport "#####" --datadir "/path/to/directory" --port "#####" --nodiscover --rpcapi "db,eth,net,web3" --networkid 17835 init /home/appo/CustomGenesis.json
