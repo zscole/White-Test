@@ -1,0 +1,24 @@
+[
+  {
+    "name"              : "node-app",
+    "script"            : "app.js",
+    "log_date_format"   : "YYYY-MM-DD HH:mm Z",
+    "merge_logs"        : false,
+    "watch"             : false,
+    "max_restarts"      : 10,
+    "exec_interpreter"  : "node",
+    "exec_mode"         : "fork_mode",
+    "env":
+  {
+		"NODE_ENV"        : "production", // tell the client we're in production environment
+		"RPC_HOST"        : "localhost", // eth JSON-RPC host
+		"RPC_PORT"        : "8545", // eth JSON-RPC port
+		"LISTENING_PORT"  : "30303", // eth listening port (only used for display)
+		"INSTANCE_NAME"   : "Alpha", // whatever you wish to name your node
+		"CONTACT_DETAILS" : "", // add your contact details here if you wish (email/skype)
+		"WS_SERVER"       : "http://localhost:3000", // path to eth-netstats WebSockets api servern
+		"WS_SECRET"       : "second",
+		"VERBOSITY"       : 2 // Set the verbosity (0 = silent, 1 = error, warn, 2 = error, warn, info, success, 3 = all logs)
+	}
+  }
+]
