@@ -1,6 +1,4 @@
-WB TEST
-ENV
-
+# WB ETH TEST ENV
 
 ## Install Geth from PPA
 ```
