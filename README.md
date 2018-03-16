@@ -1,5 +1,7 @@
 # WB ETH TEST ENV
 
+Setting up a local, private Ethereum testnet. The following assumes that each node is operating independently within it's own VLAN. 
+
 ## Install Geth from PPA
 ```
     sudo apt-get install software-properties-common
