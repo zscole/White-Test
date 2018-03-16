@@ -2,7 +2,7 @@ WB TEST
 ENV
 
 
-**Install Geth from PPA**
+## Install Geth from PPA
 ```
     sudo apt-get install software-properties-common
     sudo add-apt-repository -y ppa:ethereum/ethereum
@@ -10,11 +10,11 @@ ENV
     sudo apt-get install ethereum
 ```
 
-**Upload custom genesis block** 
+## Upload custom genesis block
 
 Add the .json file to datadir. Check CustomGenesis.json file for example. 
 
-**Create geth account**
+## Create geth account
 
     `geth account new`
 
@@ -22,19 +22,19 @@ Don't forget your password and take note of this account address.
 
 This can also be done in geth console with `personal.newAccount("passphrase")`
 
-**Initialize genesis block**
+## Initialize genesis block
 
     `geth --datadir /path/to/datadir init /path/to/customgenesis` 
 
 Add whatever custom flags are appropriate for your particular configuartion. 
 
-**Start geth**
+## Start geth
 
      `geth --datadir /path/to/datadir init /path/to/customgenesis` 
 
 Add whatever custom flags are appropriate. 
 
-**Get enode address**
+## Get enode address
 
     `admin.nodeInfo.enode`
 
