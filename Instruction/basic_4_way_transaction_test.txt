@@ -1,0 +1,68 @@
+Pre-req: 
+- Make sure node and npm are installed correctly
+- Make sure truffle is installed correctly
+- Make sure geth network is up and running
+
+Step by step: 
+- Choose one of the node as your contract host node (node12 is used in the test case)
+- Choose the other three nodes as the transaction testing nodes
+- Choose 3 or 4 nodes as your miner nodes
+- start the geth console: 
+	- geth --rpc --datadir /home/appo/G178352 --networkid 178352 console
+- create a new account: 
+	- personal.newAccount("second")
+	- second is the password for this account. will use it later
+- Do the above steps for all 4 nodes that you choose to run the transaction test. 
+- Now you have all 4 account created. copy the private keys files (under keystore folder) from the other 3 nodes to your contract account node and put it under keystore folder. 
+- Make sure you have the test truffle project copied to the contract host node. 
+- Make sure you change the truffle.js file so the from attribute has the contract node address
+- Change the 4 addresses in truffletest.js file to the 4 test account addresses. (you can use the last part of the file names from the keystore files as addresses. Or you can type personal.listWallets when you are in the geth console)
+- Go to the miner nodes, and start mining by typing: 
+	miner.start()
+- You need to unlock the accounts deploy the contract as well as execute the transactions (for ether transfering)
+	- personal.unlockAccount("0x5e97870f263700f46aa00d967821199b9bc5a120", "second", 0)
+	- The argument is the account address, password and duration
+	- 0 means unlock forever until exit out of geth
+	- You need to unlock all 4 accounts from the console of contract account node
+	- Use personal.listWallets to check if accounts are unlocked 
+- Once you done the above steps, you can go to the project file in the contract account node, type truffle migrate --reset to deploy the contract
+- Then type truffle exec truffletest.js to run the test
+
+Useful commands: 
+	- Start console: 	
+		geth --rpc --datadir /home/appo/G178352 --networkid 178352 console
+	- Create account: 
+		personal.newAccount("second")
+	- Start miner: 
+		miner.start()
+	- Unlock account with no duration limit: 
+		personal.unlockAccount("0x5e97870f263700f46aa00d967821199b9bc5a120", "second", 0) 
+	- Check unlock status: 
+		personal.listWallets
+	- Check balance: 
+		web3.fromWei(eth.getBalance(eth.coinbase), "ether")
+
+
+Common errors: 
+- unknow account error: 
+	check if you have the keystore files fro your test nodes copied to your main contract account keystore folder. 
+
+
+- Could not connect to your Ethereum Client: 
+	most likely your truffle.js file setup is wrong. need to change the from attribute to the correct account address
+
+
+- authentication needed: password or unlock
+	most likely you didn't unlock the accounts
+
+- Got stuck in the truffle migration stage 
+	- Probably you didn't start the miner	
+	- The other possibility is that contract account (node 12 in my test case) didn't start get on the right etherbase; Since we copy all the test account private keys to the keystore of the contract account, when we start geth console on contract account, it's better to specify which account we use for the etherbase: 
+	use this command: geth --rpc --datadir /home/appo/G178352 --networkid 178352 console --etherbase 6a3ef4a25ff9338d3faf6f36c4922aad92379bdb
+	
+- insufficient funds for gas * price + value
+	- Probably the account you are trying to deploy your contract to has no ether. And either you need to start mining or assign some initial ether
+	- make sure you specify the ether base in contract account: 
+		geth --rpc --datadir /home/appo/G178352 --networkid 178352 console --etherbase 6a3ef4a25ff9338d3faf6f36c4922aad92379bdb
+
+	
