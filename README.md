@@ -1,6 +1,6 @@
 # Geth Bash Build
 
-Setting up a local, private Ethereum testnet. The following assumes that each node is operating independently within it's own VLAN. 
+Sets up a local, private Ethereum testnet. The following assumes that each node is operating independently within it's own VLAN. These scripts may not work in your environment. They were created only for prototyping purposes for use within my personal lab. If anyone comes across this repo and actually decides to use any of this, let me know if you have any problems. 
 
 ## Install Geth from PPA
 ```
