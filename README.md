@@ -1,4 +1,4 @@
-# WB ETH TEST ENV
+# Geth Bash Build
 
 Setting up a local, private Ethereum testnet. The following assumes that each node is operating independently within it's own VLAN. 
 
